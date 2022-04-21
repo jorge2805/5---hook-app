@@ -12,11 +12,12 @@ import ReactDOM from 'react-dom';
 // import { LayoutEffetct } from './components/05-useLayoutEffect/LayoutEffetct';
 // import { Memorize } from './components/06-memo/Memorize';
 // import { MemoHook } from './components/06-memo/MemoHook';
-import { CallbackHook } from './components/06-memo/CallbackHook';
+// import { CallbackHook } from './components/06-memo/CallbackHook';
+import { Padre } from './components/07-tarea-memo/Padre';
 
 ReactDOM.render(
   <>
-    <CallbackHook />
+    <Padre />
   </>,
   document.getElementById('root')
 );
