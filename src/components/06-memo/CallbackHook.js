@@ -17,7 +17,7 @@ export const CallbackHook = () => {
     },
     [setCounter],
   )
-  
+    
 
   return (
     <>
