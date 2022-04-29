@@ -1,20 +1,55 @@
-import React, { useReducer } from 'react'
+import React, { useEffect, useReducer } from 'react'
 import { todoReducer } from './todoReducer'
 import './Style.css'
+import { useForm } from '../../hooks/useForm'
 
 
 
-const initialState = [{
-  id: new Date().getTime(),
-  toDoName: "Comprar Pollo",
-  done: false
-}]
+const init = () => {
+
+  return JSON.parse(localStorage.getItem('ToDos')) || [];
+
+  // return [{
+  //   id: new Date().getTime(),
+  //   toDoName: "Comprar Pollo",
+  //   done: false
+  // }]
+};
 
 export const TodoApp = () => {
   
-  const [todos] = useReducer(todoReducer, initialState)
+  const [todos, dispach] = useReducer(todoReducer, [], init)
   
-  console.log(todos);
+  const [{toDoName},handleInputChange, reset] = useForm({
+    toDoName: ''
+  });
+
+  useEffect(() => {
+    localStorage.setItem('ToDos',JSON.stringify(todos));
+  }, [todos])
+  
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (toDoName.trim().length <= 1) {
+      return;
+    }
+
+    const ToDoItem = {
+      id: new Date().getTime(),
+      toDoName: toDoName,
+      done: false
+    }
+
+    const action =  {
+      type: 'add',
+      payload: ToDoItem
+    }
+
+    dispach(action);
+    reset();
+  };
 
   return (
     <>
@@ -44,7 +79,7 @@ export const TodoApp = () => {
           <h4>Add To do</h4>
           <hr/>
 
-          <form>
+          <form onSubmit={ handleSubmit }>
 
             <input
               type="text"
@@ -52,11 +87,16 @@ export const TodoApp = () => {
               name='toDoName'
               placeholder='Comprar...'
               autoComplete='off'
+              onChange={handleInputChange}
+              value={toDoName}
             >
 
             </input>
 
-            <button className='btn btn-primary mt-1 w-100'>
+            <button 
+              type='submit'
+              className='btn btn-primary mt-1 w-100'
+            >
               Agregar
             </button>
 
