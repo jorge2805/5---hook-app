@@ -36,6 +36,13 @@ export const TodoApp = () => {
     dispach(action);
   }
 
+  const handelToogle = (ToDoID) => {
+    dispach({
+      type: 'toogle',
+      payload: ToDoID
+    });
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -72,7 +79,12 @@ export const TodoApp = () => {
                   key={todo.id}
                   className="list-group-item"
                 >
-                <p className='text-center'> {i + 1}. {todo.toDoName}</p>
+                <p 
+                  className={ todo.done === true && 'complete'}
+                  onClick={ () => handelToogle(todo.id)}
+                > 
+                  {i + 1}. {todo.toDoName}
+                </p>
                 <button 
                   className='btn btn-danger'
                   onClick={ () => { 
