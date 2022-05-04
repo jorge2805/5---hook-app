@@ -17,6 +17,8 @@ export const AppRouter = () => {
         <div>
             <NavBar/>
 
+            <div className='container'>
+
             <Routes>
                 <Route path='/' element = { <HomeScreen/> }></Route> 
                 <Route path='/Login' element = { <LoginScreen/> }></Route>
@@ -25,7 +27,8 @@ export const AppRouter = () => {
                 <Route path="*" element={<HomeScreen />} />
 
             </Routes>
-
+            
+            </div>
         </div>
     </BrowserRouter>
   )
