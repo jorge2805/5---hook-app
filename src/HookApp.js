@@ -1,9 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { AppRouter } from './components/HookApp/AppRouter'
 
 export const HookApp = () => {
+  
   return (
     <div>
-        <h1>Hola Mundo</h1>
+        <>
+            
+            <AppRouter />
+
+        </>
     </div>
   )
 }
